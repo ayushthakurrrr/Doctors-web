@@ -1,0 +1,176 @@
+/* Ensure all elements take into account the padding and border in their total width/height */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin and padding for the entire page */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* General styles for the meditation container */
+.meditation-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Background image setup */
+.meditation-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/image/meditation.png');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+/* Content wrapper centered vertically and horizontally */
+.meditation-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  position: relative; /* Important for absolute positioning of child elements */
+}
+
+/* Title Styling */
+.meditation-title {
+  color: white;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 0;
+  width: 100%;
+}
+
+/* Subtitle Styling */
+.meditation-subtitle {
+  color: white;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 0;
+  width: 100%;
+}
+
+/* Timer Title Styling */
+.timer-title {
+  color: white;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 22px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Timer Button Container - 2x2 layout */
+.timer-buttons-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 338px;
+  max-width: 100%;
+  z-index: 1;
+}
+
+/* Timer Button Styling */
+.timer-button {
+  background-color: transparent;
+  color: white;
+  font-size: 30px;
+  font-weight: 400;
+  text-align: center;
+  line-height: 22px;
+  letter-spacing: 0;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 92px;
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* Center-align the button within each grid block */
+  justify-self: center;
+  align-self: center;
+}
+
+.timer-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Custom Timer Styling */
+.custom-timer {
+  color: white;
+  font-size: 30px;
+  font-weight: 400;
+  text-align: center;
+  line-height: 22px;
+  letter-spacing: 0;
+  text-decoration: underline solid 0%;
+  margin-top: 20px;
+  width: 181px;
+  height: 22px;
+  position: absolute;
+  top: 60vh;  /* Set the custom timer to appear 60% down the viewport height */
+  left: 50%;
+  transform: translateX(-50%);  /* Center horizontally */
+  z-index: 10;  /* Ensure it is above other elements */
+}
+
+/* Mobile-specific styling */
+@media (max-width: 768px) {
+  .meditation-title {
+    font-size: 24px;
+  }
+
+  .meditation-subtitle {
+    font-size: 12px;
+  }
+
+  .timer-title {
+    font-size: 20px;
+  }
+
+  .timer-button {
+    width: 60px;
+    height: 60px;
+    font-size: 16px;
+  }
+
+  .timer-buttons-container {
+    gap: 20px;
+  }
+
+  .custom-timer {
+    font-size: 24px;
+    top: 55vh;  /* Adjust for smaller screens, slightly higher */
+  }
+}
